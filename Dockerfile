@@ -28,6 +28,8 @@ USER hubot
 RUN npm install ./hubot-rocketchat \
 		#coffee -c /home/hubot/node_modules/hubot-rocketchat/src/*.coffee &&
 		&& cd /home/hubot
+     
+EXPOSE 8080
 
 CMD node -e "console.log(JSON.stringify('$EXTERNAL_SCRIPTS'.split(',').filter(v => v.includes('hubot-'))))" > external-scripts.json && \
 	npm install $(node -e "console.log('$EXTERNAL_SCRIPTS'.split(',').join(' '))") && \
